@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function Contact() {
+  const brandName = "MONROY".split("");
+
   return (
     <section className="relative z-10 w-full min-h-screen bg-[#070000] px-6 md:px-16 lg:px-24 py-32 flex flex-col justify-between overflow-hidden">
       {/* Background Volumetric Heat */}
@@ -104,15 +106,25 @@ export default function Contact() {
 
       {/* Massive Footer Typography */}
       <div className="mt-32 w-full text-center overflow-hidden flex flex-col items-center">
-        <motion.p 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10px" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] font-black text-white/5 tracking-tighter leading-none select-none pointer-events-none"
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative text-[12vw] font-black tracking-tighter leading-none select-none flex items-center justify-center cursor-default py-8 px-4 w-full"
         >
-          MONROY
-        </motion.p>
+          {/* Reactive Letters Container */}
+          <div className="flex justify-center items-center group">
+            {brandName.map((char, i) => (
+              <span
+                key={i}
+                className="text-white/5 transition-all duration-300 ease-out hover:text-white hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.9)] hover:scale-110 px-1"
+              >
+                {char}
+              </span>
+            ))}
+          </div>
+        </motion.div>
         <p className="text-zinc-600 font-mono text-[10px] tracking-[0.5em] uppercase mb-8">
           © {new Date().getFullYear()} // Todos los derechos reservados
         </p>

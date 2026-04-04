@@ -12,12 +12,12 @@ export default function About() {
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10 py-32">
         {/* Left Column: Huge typography */}
         <div className="lg:col-span-7 flex flex-col justify-center relative">
-          <motion.div 
-            initial={{ width: 0 }} 
-            whileInView={{ width: "100%" }} 
-            viewport={{ once: true, margin: "-100px" }}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="h-[2px] bg-red-500 mb-12 origin-left" 
+            className="h-[2px] bg-red-500 mb-12 origin-left"
           />
           <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] uppercase">
             {letters.map((letter, index) => (
@@ -25,15 +25,13 @@ export default function About() {
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: false, margin: "-100px" }}
                 transition={{
                   duration: 0.8,
                   delay: index * 0.03,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`inline-block ${
-                  letter === " " ? "w-4 md:w-8" : ""
-                }`}
+                className={`inline-block ${letter === " " ? "w-4 md:w-8" : ""}`}
               >
                 {letter}
               </motion.span>
@@ -51,9 +49,11 @@ export default function About() {
             className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mb-8"
           >
             Mi enfoque en la disciplina combina una{" "}
-            <span className="text-zinc-100 font-medium">pasión obsesiva por la estética </span>
-            con tecnología de vanguardia. Creo experiencias que desdibujan la línea entre
-            el arte abstracto, el cine y las interfaces funcionales.
+            <span className="text-zinc-100 font-medium">
+              pasión obsesiva por la estética{" "}
+            </span>
+            con tecnología de vanguardia. Creo experiencias que desdibujan la
+            línea entre el arte abstracto, el cine y las interfaces funcionales.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, x: 30 }}
@@ -62,20 +62,28 @@ export default function About() {
             transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-zinc-500 text-base font-light leading-relaxed"
           >
-            Nacido en lo digital. Destinado a empujar las fronteras del diseño frontend de alto rendimiento.
+            Nacido en lo digital. Destinado a empujar las fronteras del diseño
+            frontend de alto rendimiento.
           </motion.p>
-          
+
           {/* Aesthetic Detail */}
-          <motion.div 
+          <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1, delay: 1, type: "spring" }}
             className="mt-16 w-16 h-16 rounded-full border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500/10 cursor-alias transition-colors"
           >
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+            >
               <path d="M12 5v14M5 12h14" />
-             </svg>
+            </svg>
           </motion.div>
         </div>
       </div>

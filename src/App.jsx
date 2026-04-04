@@ -125,6 +125,25 @@ function Hero() {
         )}
       </motion.div>
 
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 pointer-events-none"
+      >
+        <span className="text-[12px] font-mono tracking-[0.4em] text-red-500/80 uppercase font-semibold">
+          Scroll
+        </span>
+        <div className="w-[2px] h-16 bg-white/20 relative overflow-hidden rounded-full">
+          <motion.div
+            animate={{ y: ["-100%", "100%"] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+            className="absolute inset-0 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,1)] rounded-full"
+          />
+        </div>
+      </motion.div>
+
       {/* Aesthetic UI Overlays (Framing and Scale elements) */}
       <div className="absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-6 md:p-12">
         <motion.div
