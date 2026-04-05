@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function About() {
-  const letters = "DESIGN IS ART IN MOVEMENT.".split("");
+  const words = "DESIGN IS ART IN MOVEMENT.".split(" ");
 
   return (
     <section
@@ -12,7 +12,7 @@ export default function About() {
       {/* Dark Subtle Ambient */}
       <div className="absolute top-[20%] left-[-20%] w-[50vw] h-[50vw] bg-red-600/5 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10 py-32">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10 py-20 md:py-32">
         {/* Left Column: Huge typography */}
         <div className="lg:col-span-7 flex flex-col justify-center relative">
           <motion.div
@@ -22,22 +22,29 @@ export default function About() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             className="h-[2px] bg-red-500 mb-12 origin-left"
           />
-          <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] uppercase">
-            {letters.map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-100px" }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.03,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={`inline-block ${letter === " " ? "w-4 md:w-8" : ""}`}
-              >
-                {letter}
-              </motion.span>
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] uppercase flex flex-wrap gap-x-3 md:gap-x-4 lg:gap-x-6 gap-y-2">
+            {words.map((word, wordIndex) => (
+              <span key={wordIndex} className="flex">
+                {word.split("").map((letter, letterIndex) => {
+                  const index = wordIndex * 10 + letterIndex;
+                  return (
+                    <motion.span
+                      key={letterIndex}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, margin: "-50px" }}
+                      transition={{
+                        duration: 0.8,
+                        delay: index * 0.03,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="inline-block"
+                    >
+                      {letter}
+                    </motion.span>
+                  );
+                })}
+              </span>
             ))}
           </h2>
         </div>

@@ -56,12 +56,12 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_150%)]" />
 
       {/* Intense Overdrive ambient lighting for fiery depth */}
-      <div className="absolute top-[-15%] right-[-10%] w-[70vw] h-[70vw] bg-red-600/20 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-red-700/25 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute top-[20%] left-[30%] w-[50vw] h-[50vw] bg-rose-600/15 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-5%] md:top-[-15%] right-[-10%] w-[90vw] md:w-[70vw] h-[90vw] md:h-[70vw] bg-red-600/20 blur-[120px] md:blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] md:bottom-[-20%] left-[-10%] w-[80vw] md:w-[60vw] h-[80vw] md:h-[60vw] bg-red-700/25 blur-[120px] md:blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-[10%] md:top-[20%] left-[20%] md:left-[30%] w-[60vw] md:w-[50vw] h-[60vw] md:h-[50vw] bg-rose-600/15 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
 
       {/* Hero Left Content */}
-      <div className="z-10 flex flex-col items-start max-w-3xl">
+      <div className="z-10 flex flex-col items-start max-w-3xl mt-[-5vh] md:mt-0">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -120,13 +120,15 @@ function Hero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden lg:block absolute inset-y-0 right-0 w-[55%] z-0 pointer-events-none"
+        className="absolute inset-0 lg:left-auto lg:right-0 lg:w-[55%] z-0 pointer-events-none flex items-center justify-center overflow-hidden"
       >
-        {load3D && (
-          <Suspense fallback={null}>
-            <Scene3D />
-          </Suspense>
-        )}
+        <div className="w-full h-[120%] lg:h-full scale-[1.5] lg:scale-100 opacity-[0.10] mix-blend-screen md:mix-blend-normal md:opacity-60 lg:opacity-100 transition-all duration-1000 -translate-y-16 lg:-translate-y-0">
+          {load3D && (
+            <Suspense fallback={null}>
+              <Scene3D />
+            </Suspense>
+          )}
+        </div>
       </motion.div>
 
       {/* Scroll Down Indicator */}

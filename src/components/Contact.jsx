@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="relative z-10 w-full min-h-screen bg-[#070000] px-6 md:px-16 lg:px-24 py-32 flex flex-col justify-between overflow-hidden"
+      className="relative z-10 w-full min-h-screen bg-[#070000] px-6 md:px-16 lg:px-24 py-20 md:py-32 flex flex-col justify-between overflow-hidden"
     >
       {/* Background Volumetric Heat */}
       <div className="absolute bottom-[-10%] right-[-20%] w-[80vw] h-[80vw] bg-red-600/10 blur-[180px] rounded-full pointer-events-none mix-blend-screen" />

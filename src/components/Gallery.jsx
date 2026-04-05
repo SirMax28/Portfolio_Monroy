@@ -2,12 +2,42 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const projects = [
-  { id: 1, title: "Sustancia", category: "Digital Art", height: "h-[30rem]" },
-  { id: 2, title: "Etereo", category: "3D Motion", height: "h-[40rem]" },
-  { id: 3, title: "Vacío", category: "Concept", height: "h-[25rem]" },
-  { id: 4, title: "Ritmo", category: "Interactive", height: "h-[35rem]" },
-  { id: 5, title: "Caos", category: "Installation", height: "h-[45rem]" },
-  { id: 6, title: "Luz", category: "Photography", height: "h-[30rem]" },
+  {
+    id: 1,
+    title: "Sustancia",
+    category: "Digital Art",
+    height: "h-[80vw] md:h-[30rem]",
+  },
+  {
+    id: 2,
+    title: "Etereo",
+    category: "3D Motion",
+    height: "h-[100vw] md:h-[40rem]",
+  },
+  {
+    id: 3,
+    title: "Vacío",
+    category: "Concept",
+    height: "h-[70vw] md:h-[25rem]",
+  },
+  {
+    id: 4,
+    title: "Ritmo",
+    category: "Interactive",
+    height: "h-[90vw] md:h-[35rem]",
+  },
+  {
+    id: 5,
+    title: "Caos",
+    category: "Installation",
+    height: "h-[110vw] md:h-[45rem]",
+  },
+  {
+    id: 6,
+    title: "Luz",
+    category: "Photography",
+    height: "h-[80vw] md:h-[30rem]",
+  },
 ];
 
 export default function Gallery() {
@@ -24,7 +54,7 @@ export default function Gallery() {
     <section
       id="galeria"
       ref={containerRef}
-      className="relative z-10 w-full bg-[#070000] py-32 px-6 md:px-16 lg:px-24"
+      className="relative z-10 w-full bg-[#070000] py-20 md:py-32 px-6 md:px-16 lg:px-24"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 h-auto overflow-hidden">
