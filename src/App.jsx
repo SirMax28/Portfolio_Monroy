@@ -9,6 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import ProjectDetail from "./components/ProjectDetail";
+import CocaColaProject from "./components/CocaColaProject";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
+        <Route path="/coca-cola" element={<CocaColaProject />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </AnimatePresence>

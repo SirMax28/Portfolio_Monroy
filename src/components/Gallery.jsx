@@ -45,6 +45,11 @@ export default function Gallery() {
               ? "h-[80vw] md:h-[30rem]"
               : "h-[100vw] md:h-[40rem]";
 
+            const targetUrl =
+              project.id === "coca-cola"
+                ? "/coca-cola"
+                : `/project/${project.id}`;
+
             return (
               <motion.div
                 key={project.id}
@@ -58,10 +63,7 @@ export default function Gallery() {
                 }}
                 className={`relative w-full ${height} group overflow-hidden bg-white/5 rounded-3xl break-inside-avoid flex flex-col`}
               >
-                <Link
-                  to={`/project/${project.id}`}
-                  className="absolute inset-0 z-20"
-                />
+                <Link to={targetUrl} className="absolute inset-0 z-20" />
 
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black w-full h-full origin-center"
