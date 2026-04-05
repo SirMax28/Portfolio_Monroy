@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const projects = [
@@ -93,6 +94,11 @@ export default function Gallery() {
                 }}
                 className={`relative w-full ${project.height} group overflow-hidden bg-white/5 rounded-3xl cursor-pointer break-inside-avoid`}
               >
+                <Link
+                  to={`/project/${project.id}`}
+                  className="absolute inset-0 z-20"
+                />
+
                 {/* Image Placeholder with Parallax Hover */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black w-full h-full origin-center"
