@@ -5,7 +5,10 @@ export default function Contact() {
   const brandName = "MONROY".split("");
 
   return (
-    <section className="relative z-10 w-full min-h-screen bg-[#070000] px-6 md:px-16 lg:px-24 py-32 flex flex-col justify-between overflow-hidden">
+    <section
+      id="contacto"
+      className="relative z-10 w-full min-h-screen bg-[#070000] px-6 md:px-16 lg:px-24 py-32 flex flex-col justify-between overflow-hidden"
+    >
       {/* Background Volumetric Heat */}
       <div className="absolute bottom-[-10%] right-[-20%] w-[80vw] h-[80vw] bg-red-600/10 blur-[180px] rounded-full pointer-events-none mix-blend-screen" />
       <div className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] bg-rose-800/10 blur-[200px] rounded-full pointer-events-none mix-blend-screen" />

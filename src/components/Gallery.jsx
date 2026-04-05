@@ -22,6 +22,7 @@ export default function Gallery() {
 
   return (
     <section
+      id="galeria"
       ref={containerRef}
       className="relative z-10 w-full bg-[#070000] py-32 px-6 md:px-16 lg:px-24"
     >

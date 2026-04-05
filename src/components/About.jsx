@@ -5,7 +5,10 @@ export default function About() {
   const letters = "DESIGN IS ART IN MOVEMENT.".split("");
 
   return (
-    <section className="relative z-10 w-full min-h-[90vh] bg-zinc-950 px-6 md:px-16 lg:px-24 flex items-center border-t border-white/5 overflow-hidden">
+    <section
+      id="about"
+      className="relative z-10 w-full min-h-[90vh] bg-zinc-950 px-6 md:px-16 lg:px-24 flex items-center border-t border-white/5 overflow-hidden"
+    >
       {/* Dark Subtle Ambient */}
       <div className="absolute top-[20%] left-[-20%] w-[50vw] h-[50vw] bg-red-600/5 blur-[150px] rounded-full pointer-events-none" />
 

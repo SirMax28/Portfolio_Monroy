@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Gallery from "./components/Gallery";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Navbar from "./components/Navbar";
 
 // Carga perezosa (Lazy Load) del modelo 3D para evitar bloquear el hilo principal
 const Scene3D = lazy(() => import("./components/Scene3D"));
@@ -41,7 +42,10 @@ function Hero() {
   };
 
   return (
-    <section className="relative w-full h-screen bg-gradient-to-br from-[#1a0505] via-[#050000] to-[#2a0000] text-white overflow-hidden flex items-center justify-between px-6 md:px-16 lg:px-24">
+    <section
+      id="inicio"
+      className="relative w-full h-screen bg-gradient-to-br from-[#1a0505] via-[#050000] to-[#2a0000] text-white overflow-hidden flex items-center justify-between px-6 md:px-16 lg:px-24"
+    >
       {/* Cinematic noise texture via SVG data-uri string and vignette */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
@@ -74,7 +78,7 @@ function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="overflow-hidden pt-2 pb-6 -mb-6"
+          className="overflow-hidden pt-2 pb-6 -mb-6 pr-4"
         >
           <motion.h1
             variants={itemVariants}
@@ -145,7 +149,7 @@ function Hero() {
       </motion.div>
 
       {/* Aesthetic UI Overlays (Framing and Scale elements) */}
-      <div className="absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-6 md:p-12">
+      <div className="absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-6 pt-24 md:p-12 md:pt-32">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -183,6 +187,7 @@ function Hero() {
 export default function App() {
   return (
     <div className="min-h-screen bg-[#070000] antialiased selection:bg-red-500/50 selection:text-white overflow-hidden">
+      <Navbar />
       <Hero />
       <Gallery />
       <About />
