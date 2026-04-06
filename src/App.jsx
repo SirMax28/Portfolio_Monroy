@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import ProjectDetail from "./components/ProjectDetail";
 import CocaColaProject from "./components/CocaColaProject";
 import JuanValdezProject from "./components/JuanValdezProject";
+import CharlieChocolateProject from "./components/CharlieChocolateProject";
 import CustomCursor from "./components/CustomCursor";
 import Preloader from "./components/Preloader";
 
@@ -23,6 +24,10 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/coca-cola" element={<CocaColaProject />} />
         <Route path="/juan-valdez" element={<JuanValdezProject />} />
+        <Route
+          path="/charlie-chocolate"
+          element={<CharlieChocolateProject />}
+        />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </AnimatePresence>

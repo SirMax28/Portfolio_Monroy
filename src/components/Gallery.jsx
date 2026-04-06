@@ -50,7 +50,9 @@ export default function Gallery() {
                 ? "/coca-cola"
                 : project.id === "juan-valdez"
                   ? "/juan-valdez"
-                  : `/project/${project.id}`;
+                  : project.id === "charlie-chocolate"
+                    ? "/charlie-chocolate"
+                    : `/project/${project.id}`;
 
             return (
               <motion.div
