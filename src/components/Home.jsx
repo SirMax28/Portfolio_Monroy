@@ -73,14 +73,14 @@ export default function Home() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="overflow-hidden pt-2 pb-6 -mb-6 pr-4"
+            className="overflow-hidden pt-2 pb-6 -mb-6 pr-12 md:pr-16"
           >
             <motion.h1
               variants={itemVariants}
               className="text-[12vw] md:text-[8rem] font-black tracking-tighter leading-none will-change-transform origin-bottom"
               style={{ textShadow: "0 4px 24px rgba(0,0,0,0.15)" }}
             >
-              MONROY
+              MONROY<span className="text-red-500">.</span>
             </motion.h1>
           </motion.div>
 
@@ -97,14 +97,19 @@ export default function Home() {
           </motion.p>
 
           <motion.button
+            onClick={() =>
+              document
+                .getElementById("about-me")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-12 px-8 py-4 bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-red-500/10 text-white rounded-full transition-all duration-500 backdrop-blur-md group flex items-center gap-4 relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-            <span className="relative z-10 font-medium tracking-wide text-sm">
-              EXPERIMENTAR OBRAS
+            <span className="relative z-10 font-medium tracking-wide text-sm uppercase">
+              PERFIL PROFESIONAL
             </span>
             <div className="relative z-10 w-2 h-2 rounded-full bg-red-500 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
           </motion.button>
