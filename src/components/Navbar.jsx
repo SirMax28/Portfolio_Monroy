@@ -1,15 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
-    { name: "Inicio", href: "#inicio" },
-    { name: "Galería", href: "#galeria" },
-    { name: "About", href: "#about" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Inicio", href: "inicio" },
+    { name: "Sobre mí", href: "about-me" },
+    { name: "Galería", href: "galeria" },
+    { name: "Contacto", href: "contacto" },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Mostrar al pasar la 3ra sección aprox (2.5 veces la altura de la pantalla es buen medidor o unos 2000px)
+      if (window.scrollY > window.innerHeight * 1.8) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Función para navegación manejando las páginas anidadas vs la de inicio
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Un pequeño retraso para permitir que la vista Home cargue antes de hacer scroll
+      setTimeout(() => {
+        document
+          .getElementById(targetId)
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -23,6 +61,7 @@ export default function Navbar() {
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={(e) => handleNavClick(e, "inicio")}
           className="text-white font-black tracking-tighter text-xl cursor-pointer relative z-[70]"
         >
           MONROY<span className="text-red-500">.</span>
@@ -33,9 +72,10 @@ export default function Navbar() {
           {navLinks.map((link, index) => (
             <li key={index}>
               <motion.a
-                href={link.href}
+                href={`/#${link.href}`}
+                onClick={(e) => handleNavClick(e, link.href)}
                 whileHover={{ y: -2, color: "#fff" }}
-                className="text-zinc-500 text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group"
+                className="text-zinc-500 text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group cursor-pointer"
               >
                 {link.name}
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-red-500 transition-all duration-300 group-hover:w-full" />
@@ -95,8 +135,8 @@ export default function Navbar() {
                   }}
                 >
                   <a
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    href={`/#${link.href}`}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="text-4xl font-black tracking-tighter text-white hover:text-red-500 transition-colors uppercase"
                   >
                     {link.name}
@@ -104,6 +144,35 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Back to top button */}
+      <AnimatePresence>
+        {showTopBtn && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0, y: 20 }}
+            transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-[50] w-12 h-12 bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer group shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <svg
+              className="w-5 h-5 text-zinc-400 group-hover:text-red-500 group-hover:-translate-y-1 transition-all duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 15l7-7 7 7"
+              />
+            </svg>
           </motion.div>
         )}
       </AnimatePresence>
