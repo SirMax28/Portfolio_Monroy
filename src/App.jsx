@@ -13,6 +13,7 @@ import ProjectDetail from "./components/ProjectDetail";
 import CocaColaProject from "./components/CocaColaProject";
 import JuanValdezProject from "./components/JuanValdezProject";
 import CustomCursor from "./components/CustomCursor";
+import Preloader from "./components/Preloader";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -57,6 +58,7 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-[#070000] antialiased selection:bg-red-500/50 selection:text-white overflow-x-hidden cursor-none">
+        <Preloader />
         <CustomCursor />
         <Navbar />
         <AnimatedRoutes />
