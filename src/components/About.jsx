@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function About() {
-  const words = "DESIGN IS ART IN MOVEMENT.".split(" ");
+  const words = "Creando identidad de marca.".split(" ");
 
   return (
     <section

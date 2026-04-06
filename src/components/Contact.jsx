@@ -101,7 +101,7 @@ export default function Contact() {
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-red-600 to-rose-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
             <div className="absolute left-[-10%] bottom-[-50%] w-0 h-full bg-red-600/30 blur-[20px] rounded-full group-hover:w-[120%] transition-all duration-700 ease-out" />
             <span className="relative z-10 text-white font-mono tracking-[0.2em] text-sm group-hover:text-white transition-colors duration-300">
-              ENVIAR TRANSMISIÓN
+              CONTÁCTAME AHORA
             </span>
           </motion.button>
         </motion.form>
@@ -121,7 +121,7 @@ export default function Contact() {
             {brandName.map((char, i) => (
               <span
                 key={i}
-                className="text-white/5 transition-all duration-300 ease-out hover:text-white hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.9)] hover:scale-110 px-1"
+                className="text-white/5 transition-all duration-300 ease-out hover:text-white hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:scale-105 px-1"
               >
                 {char}
               </span>

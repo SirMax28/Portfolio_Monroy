@@ -8,12 +8,53 @@ import Contact from "./Contact";
 // Lazy Load del modelo 3D
 const Scene3D = lazy(() => import("./Scene3D"));
 
+const TYPEWRITER_WORDS = [
+  "premisa",
+  "historia",
+  "necesidad",
+  "abstracción",
+  "obsesión",
+  "idea",
+];
+
 export default function Home() {
   const [load3D, setLoad3D] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // 3D Scene Delay
   useEffect(() => {
     const timer = setTimeout(() => setLoad3D(true), 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Typewriter Effect
+  useEffect(() => {
+    const word = TYPEWRITER_WORDS[currentWordIndex];
+    let timeout;
+
+    if (isDeleting) {
+      if (currentText.length === 0) {
+        setIsDeleting(false);
+        setCurrentWordIndex((prev) => (prev + 1) % TYPEWRITER_WORDS.length);
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentText((prev) => prev.substring(0, prev.length - 1));
+        }, 50); // Speed for deleting
+      }
+    } else {
+      if (currentText.length === word.length) {
+        timeout = setTimeout(() => setIsDeleting(true), 2000); // 2s pause
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentText((prev) => word.substring(0, prev.length + 1));
+        }, 100); // Speed for typing
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -65,7 +106,7 @@ export default function Home() {
           >
             <div className="w-12 h-[1px] bg-red-500" />
             <p className="text-red-500/80 font-mono tracking-[0.3em] uppercase text-xs">
-              Art & Design Portfolio
+              PORTAFOLIO DE ARTE Y DISEÑO
             </p>
           </motion.div>
 
@@ -88,12 +129,22 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-zinc-400 text-lg md:text-2xl font-light leading-relaxed max-w-lg mt-8"
+            className="text-zinc-400 text-lg md:text-2xl font-light leading-relaxed max-w-lg mt-8 min-h-[5rem]"
           >
-            Transformando la abstracción en experiencias visuales.{" "}
-            <span className="text-zinc-200">
-              Explora la estética de la nueva era.
-            </span>
+            Cada proyecto nace de una{" "}
+            <span className="text-white font-medium">{currentText}</span>
+            <motion.span
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{
+                repeat: Infinity,
+                duration: 0.8,
+                ease: "linear",
+              }}
+              className="text-[#e00024] font-medium ml-[1px] relative inline-block -translate-y-[1px]"
+            >
+              |
+            </motion.span>{" "}
+            y evoluciona hasta convertirse en un universo visual.
           </motion.p>
 
           <motion.button

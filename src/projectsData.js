@@ -35,7 +35,7 @@ export const projectsData = [
   {
     id: "mas-proyectos",
     title: "Más Proyectos",
-    category: "Exploración & Arte",
+    category: "Conoce más de mi arte",
     client: "Varios Archivos",
     description:
       "Bocetos, ilustraciones hiperrealistas, cómics y experimentos visuales. Un viaje a través de diferentes estilos y medios.",

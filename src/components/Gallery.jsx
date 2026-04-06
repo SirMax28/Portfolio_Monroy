@@ -80,7 +80,7 @@ export default function Gallery() {
                 <Link to={targetUrl} className="absolute inset-0 z-30">
                   {isMoreProjects && (
                     <div className="absolute top-4 right-4 bg-purple-500/20 text-purple-300 text-[10px] uppercase font-mono px-3 py-1 rounded-full border border-purple-500/30 backdrop-blur-sm animate-pulse">
-                      Explorar Mix
+                      Explorar Más
                     </div>
                   )}
                 </Link>
