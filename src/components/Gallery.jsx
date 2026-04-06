@@ -37,13 +37,21 @@ export default function Gallery() {
 
         <motion.div
           style={{ y }}
-          className="columns-1 md:columns-2 gap-8 space-y-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {projectsData.map((project, index) => {
-            const isEven = index % 2 === 0;
-            const height = isEven
-              ? "h-[80vw] md:h-[30rem]"
-              : "h-[100vw] md:h-[40rem]";
+            // Make the 4th item (Más proyectos) stand out distinctive
+            const isMoreProjects = project.id === "mas-proyectos";
+
+            // Apply different heights based on index to recreate the masonry feel somewhat
+            const isSecondColumn = index % 2 !== 0;
+            let height = isSecondColumn
+              ? "h-[80vw] md:h-[40rem]"
+              : "h-[80vw] md:h-[30rem]";
+
+            if (isMoreProjects) {
+              height = "h-[40vw] md:h-[14rem]"; // Un rectángulo notablmente más pequeño
+            }
 
             const targetUrl =
               project.id === "coca-cola"
@@ -52,7 +60,9 @@ export default function Gallery() {
                   ? "/juan-valdez"
                   : project.id === "charlie-chocolate"
                     ? "/charlie-chocolate"
-                    : `/project/${project.id}`;
+                    : project.id === "mas-proyectos"
+                      ? "/mas-proyectos"
+                      : `/project/${project.id}`;
 
             return (
               <motion.div
@@ -65,26 +75,52 @@ export default function Gallery() {
                   delay: index * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`relative w-full ${height} group overflow-hidden bg-white/5 rounded-3xl break-inside-avoid flex flex-col`}
+                className={`relative w-full ${height} group overflow-hidden bg-white/5 rounded-3xl break-inside-avoid flex flex-col ${isSecondColumn ? "md:mt-24" : ""} ${isMoreProjects ? "ring-2 ring-purple-500/30 hover:ring-purple-500/80" : ""}`}
               >
-                <Link to={targetUrl} className="absolute inset-0 z-20" />
+                <Link to={targetUrl} className="absolute inset-0 z-30">
+                  {isMoreProjects && (
+                    <div className="absolute top-4 right-4 bg-purple-500/20 text-purple-300 text-[10px] uppercase font-mono px-3 py-1 rounded-full border border-purple-500/30 backdrop-blur-sm animate-pulse">
+                      Explorar Mix
+                    </div>
+                  )}
+                </Link>
 
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black w-full h-full origin-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    style={{
-                      background: `radial-gradient(circle at center, ${project.themeColor || "#ef4444"}20, transparent 70%)`,
-                    }}
-                  />
-                </motion.div>
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                  {project.image ? (
+                    <motion.div
+                      className="w-full h-[120%] -top-[10%]"
+                      style={{
+                        y: useTransform(scrollYProgress, [0, 1], [-50, 50]),
+                        position: "absolute",
+                      }}
+                    >
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover origin-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black w-full h-full origin-center"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                        style={{
+                          background: `radial-gradient(circle at center, ${project.themeColor || "#ef4444"}20, transparent 70%)`,
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                </div>
 
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 pointer-events-none z-10" />
 
-                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[0.16,1,0.3,1] z-10 pointer-events-none flex flex-col justify-end">
+                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[0.16,1,0.3,1] z-20 pointer-events-none flex flex-col justify-end">
                   <div
                     className="w-12 h-[1px] mb-4 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 delay-100"
                     style={{ backgroundColor: project.themeColor || "#ef4444" }}

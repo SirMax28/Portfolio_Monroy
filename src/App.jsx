@@ -13,6 +13,7 @@ import ProjectDetail from "./components/ProjectDetail";
 import CocaColaProject from "./components/CocaColaProject";
 import JuanValdezProject from "./components/JuanValdezProject";
 import CharlieChocolateProject from "./components/CharlieChocolateProject";
+import MoreProjects from "./components/MoreProjects";
 import CustomCursor from "./components/CustomCursor";
 import Preloader from "./components/Preloader";
 
@@ -28,6 +29,7 @@ function AnimatedRoutes() {
           path="/charlie-chocolate"
           element={<CharlieChocolateProject />}
         />
+        <Route path="/mas-proyectos" element={<MoreProjects />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </AnimatePresence>
