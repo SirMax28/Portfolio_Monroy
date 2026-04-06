@@ -14,7 +14,7 @@ export default function Gallery() {
 
   return (
     <section
-      id="galeria"
+      id="proyectos"
       ref={containerRef}
       className="relative z-10 w-full bg-[#070000] py-20 md:py-32 px-6 md:px-16 lg:px-24"
     >
@@ -27,10 +27,10 @@ export default function Gallery() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-red-500 font-mono text-xs tracking-[0.3em] uppercase mb-4">
-              // Selected Archives
+              // Mis favoritos
             </p>
             <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter">
-              GALERÍA.
+              PROYECTOS.
             </h2>
           </motion.div>
         </div>
