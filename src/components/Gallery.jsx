@@ -10,8 +10,6 @@ export default function Gallery() {
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
     <section
       id="proyectos"
@@ -35,10 +33,7 @@ export default function Gallery() {
           </motion.div>
         </div>
 
-        <motion.div
-          style={{ y }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projectsData.map((project, index) => {
             // Make the 4th item (Más proyectos) stand out distinctive
             const isMoreProjects = project.id === "mas-proyectos";
@@ -67,11 +62,11 @@ export default function Gallery() {
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
-                whileInView={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  duration: 1.5,
+                  duration: 1,
                   delay: index * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
@@ -118,24 +113,24 @@ export default function Gallery() {
                   )}
                 </div>
 
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 pointer-events-none z-10" />
+                <div className="absolute inset-0 bg-black/10 md:bg-black/40 md:group-hover:bg-black/10 transition-colors duration-700 pointer-events-none z-10" />
 
-                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[0.16,1,0.3,1] z-20 pointer-events-none flex flex-col justify-end">
+                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 translate-y-0 md:translate-y-8 md:group-hover:translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 ease-[0.16,1,0.3,1] z-20 pointer-events-none flex flex-col justify-end">
                   <div
-                    className="w-12 h-[1px] mb-4 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 delay-100"
+                    className="w-12 h-[1px] mb-4 scale-x-100 md:scale-x-0 md:group-hover:scale-x-100 origin-left transition-transform duration-700 delay-100"
                     style={{ backgroundColor: project.themeColor || "#ef4444" }}
                   />
-                  <p className="text-zinc-300 font-mono text-xs tracking-widest uppercase mb-2">
+                  <p className="text-zinc-300 font-mono text-xs tracking-widest uppercase mb-2 drop-shadow-md">
                     {project.category}
                   </p>
-                  <h3 className="text-3xl font-bold text-white tracking-tight">
+                  <h3 className="text-3xl font-bold text-white tracking-tight drop-shadow-md">
                     {project.title}
                   </h3>
                 </div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
