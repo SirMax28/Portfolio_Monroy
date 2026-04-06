@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@layer base {
+  html,
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [class*="cursor-"] {
+    cursor: none !important;
+  }
+}

@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [activeSection, setActiveSection] = useState("inicio");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,6 +15,31 @@ export default function Navbar() {
     { name: "Galería", href: "galeria" },
     { name: "Contacto", href: "contacto" },
   ];
+
+  // Scroll Spy logic
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -60% 0px", // Ajuste para considerar 'activo' un elemento cuando cruza casi la mitad de la pantalla
+      },
+    );
+
+    navLinks.forEach((link) => {
+      const el = document.getElementById(link.href);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,19 +95,31 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-10">
-          {navLinks.map((link, index) => (
-            <li key={index}>
-              <motion.a
-                href={`/#${link.href}`}
-                onClick={(e) => handleNavClick(e, link.href)}
-                whileHover={{ y: -2, color: "#fff" }}
-                className="text-zinc-500 text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group cursor-pointer"
-              >
-                {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-red-500 transition-all duration-300 group-hover:w-full" />
-              </motion.a>
-            </li>
-          ))}
+          {navLinks.map((link, index) => {
+            const isActive =
+              activeSection === link.href && location.pathname === "/";
+            return (
+              <li key={index}>
+                <motion.a
+                  href={`/#${link.href}`}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  whileHover={{ y: -2, color: "#fff" }}
+                  className={`text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group cursor-pointer ${
+                    isActive
+                      ? "text-white"
+                      : "text-zinc-500 hover:text-zinc-300"
+                  }`}
+                >
+                  {link.name}
+                  <span
+                    className={`absolute -bottom-2 left-0 h-[1px] bg-red-500 transition-all duration-300 group-hover:w-full ${
+                      isActive ? "w-full" : "w-0"
+                    }`}
+                  />
+                </motion.a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile Menu indicator (Minimal) */}
