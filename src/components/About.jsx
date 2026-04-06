@@ -58,22 +58,24 @@ export default function About() {
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mb-8"
           >
-            Mi enfoque en la disciplina combina una{" "}
-            <span className="text-zinc-100 font-medium">
-              pasión obsesiva por la estética{" "}
-            </span>
-            con tecnología de vanguardia. Creo experiencias que desdibujan la
-            línea entre el arte abstracto, el cine y las interfaces funcionales.
+            Mi enfoque parte siempre del{" "}
+            <span className="text-zinc-100 font-medium">concepto</span>. Cada
+            decisión desde el naming hasta el diseño del logotipo, los símbolos
+            o los elementos gráficos responde a una intención concreta. Busco
+            que cada parte tenga un sentido claro dentro del conjunto, evitando
+            soluciones arbitrarias o puramente estéticas.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-zinc-500 text-base font-light leading-relaxed"
+            className="text-zinc-500 text-base sm:text-lg font-light leading-relaxed"
           >
-            Nacido en lo digital. Destinado a empujar las fronteras del diseño
-            frontend de alto rendimiento.
+            Me interesa desarrollar identidades que funcionen como sistemas,
+            donde todos los elementos se relacionan entre sí y construyen una
+            narrativa visual coherente. Creo que es en esa coherencia donde una
+            marca empieza a adquirir personalidad y reconocimiento.
           </motion.p>
 
           {/* Aesthetic Detail */}

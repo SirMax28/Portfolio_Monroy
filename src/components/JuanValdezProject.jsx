@@ -105,7 +105,7 @@ export default function JuanValdezProject() {
       <div className="relative z-10 w-full pt-[15vh]">
         <section className="min-h-[85vh] flex flex-col items-center justify-start text-center pointer-events-none">
           <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mix-blend-difference mb-4 drop-shadow-2xl">
-            JUAN VALDEZ 3D
+            JUAN VALDEZ
           </h1>
           <p className="text-zinc-300 tracking-[0.4em] font-mono text-xs uppercase animate-pulse drop-shadow-md">
             Comienza a hacer scroll
@@ -116,15 +116,14 @@ export default function JuanValdezProject() {
         <section className="min-h-[80vh] flex flex-col justify-end items-center pb-24 px-6 md:px-16 pointer-events-none text-center">
           <div className="max-w-2xl bg-black/60 backdrop-blur-md p-8 md:p-12 rounded-[2rem] border border-white/5 shadow-2xl pointer-events-auto">
             <span className="text-[#B38B59] font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
-              // Experiencia 3D
+              // Experiencia Inmersiva
             </span>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-4 text-white leading-none">
               CAFÉ <span className="text-[#B38B59]">PREMIUM.</span>
             </h1>
             <p className="text-zinc-300 font-light text-lg">
-              Rediseñando el empaque clásico. Capturando la textura del papel
-              crudo y las notas orgánicas de la cultura cafetera directamente en
-              tu navegador.
+              Rediseñando el empaque Clásico. Capturando la textura del papel
+              crudo y las notas orgánicas de la cultura cafetera.
             </p>
           </div>
         </section>
@@ -132,15 +131,15 @@ export default function JuanValdezProject() {
         <section className="min-h-[80vh] flex flex-col justify-end items-center pb-24 px-6 md:px-16 pointer-events-none text-center">
           <div className="max-w-2xl bg-black/60 backdrop-blur-md p-8 md:p-12 rounded-[2rem] border border-white/5 shadow-2xl pointer-events-auto">
             <span className="text-white font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
-              // Detalles
+              // Edición especial
             </span>
             <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-[#B38B59] leading-none">
-              TEXTURAS ORGÁNICAS.
+              ART NOUVEAU.
             </h2>
             <p className="text-zinc-300 font-light text-lg">
-              Materiales PBR que resaltan el gramaje del empaque y la sutileza
-              de la tinta natural, haciendo que el usuario perciba la rugosidad
-              antes de abrirlo.
+              El diseño se inspira en el lenguaje visual del Art Nouveau,
+              incorporando formas orgánicas, líneas fluidas y una composición
+              ornamental que conecta con la naturaleza del café.
             </p>
           </div>
         </section>
@@ -151,8 +150,8 @@ export default function JuanValdezProject() {
               SABOR <span className="text-[#B38B59]">COLOMBIANO.</span>
             </h2>
             <p className="text-zinc-300 font-light text-lg">
-              Una inmersión digital en la tradición cafetera. Donde el aroma
-              parece nacer desde la pantalla y te invita a probarlo.
+              Selección de café 100% colombiano, cultivado en origen y
+              reconocido por su calidad, aroma y carácter.
             </p>
           </div>
         </section>
@@ -297,9 +296,9 @@ function PackagingSection({ scrollYProgress }) {
             initial={{ opacity: 0, scale: 0.9, rotate: -5, y: 20 }}
             animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
             transition={{ type: "spring", duration: 0.8, bounce: 0.4 }}
-            src="/juan_valdez/a_y_vaso_juan_valdez.webp"
+            src="/juan_valdez/vaso_sin_fondo.webp"
             alt="Packaging Vaso"
-            className="max-w-[280px] md:max-w-[400px] relative z-10 mix-blend-multiply"
+            className="max-w-[280px] md:max-w-[400px] relative z-10 drop-shadow-2xl"
             loading="lazy"
           />
         </div>
@@ -317,33 +316,78 @@ function PackagingSection({ scrollYProgress }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-6">
-            {options.map((opt) => (
-              <div
-                key={opt.color}
-                className="flex items-center gap-6 cursor-pointer group"
-                onClick={() => setSelectedColor(opt.color)}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`w-12 h-12 rounded-full border-4 shadow-md transition-all duration-300 ${selectedColor === opt.color ? (selectedColor === "#333333" ? "border-white" : "border-[#b38b59]") : "border-transparent"}`}
-                  style={{ backgroundColor: opt.color }}
-                />
-                <div className="flex flex-col">
-                  <span
-                    className={`text-xl transition-colors font-medium ${selectedColor === opt.color ? (selectedColor === "#333333" ? "text-white" : "text-[#2c1d11]") : selectedColor === "#333333" ? "text-zinc-400" : "text-[#8a7b6d]"}`}
+          <div className="flex flex-col gap-4 w-full">
+            {options.map((opt) => {
+              const isDarkState =
+                selectedColor === "#9a2e25" || selectedColor === "#512216";
+              const isSelected = selectedColor === opt.color;
+
+              return (
+                <div
+                  key={opt.color}
+                  onClick={() => setSelectedColor(opt.color)}
+                  className={`flex items-center justify-between w-full p-4 rounded-2xl cursor-pointer group transition-all duration-300 border-2 ${
+                    isSelected
+                      ? isDarkState
+                        ? "border-white/30 bg-white/10"
+                        : "border-[#b38b59] bg-[#b38b59]/10"
+                      : isDarkState
+                        ? "border-white/5 hover:border-white/20 hover:bg-white/5"
+                        : "border-black/5 hover:border-black/20 hover:bg-black/5"
+                  }`}
+                >
+                  <div className="flex items-center gap-6">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className={`w-12 h-12 rounded-full border-4 shadow-lg transition-all duration-300 ${
+                        isSelected
+                          ? "border-current shadow-black/30"
+                          : "border-transparent"
+                      } ${isDarkState ? "text-white" : "text-[#b38b59]"}`}
+                      style={{ backgroundColor: opt.color }}
+                    />
+                    <div className="flex flex-col">
+                      <span
+                        className={`text-xl transition-colors font-medium ${
+                          isSelected
+                            ? isDarkState
+                              ? "text-white"
+                              : "text-[#2c1d11]"
+                            : isDarkState
+                              ? "text-white/60 group-hover:text-white/80"
+                              : "text-[#8a7b6d] group-hover:text-[#2c1d11]"
+                        }`}
+                      >
+                        {opt.name}
+                      </span>
+                      <span
+                        className={`text-xs font-mono tracking-widest transition-colors duration-700 ${
+                          isDarkState ? "text-white/40" : "text-[#5c4a3d]/60"
+                        }`}
+                      >
+                        {opt.color.toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Clearer click indicator */}
+                  <div
+                    className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all ${
+                      isSelected
+                        ? isDarkState
+                          ? "bg-white text-black"
+                          : "bg-[#b38b59] text-white"
+                        : isDarkState
+                          ? "bg-white/10 text-white/50 group-hover:bg-white/20 group-hover:text-white/90"
+                          : "bg-black/5 text-black/40 group-hover:bg-black/10 group-hover:text-black/80"
+                    }`}
                   >
-                    {opt.name}
-                  </span>
-                  <span
-                    className={`text-xs font-mono tracking-widest transition-colors duration-700 ${selectedColor === "#333333" ? "text-zinc-500" : "text-[#5c4a3d]"}`}
-                  >
-                    {opt.color.toUpperCase()}
-                  </span>
+                    {isSelected ? "Activo" : "Elegir"}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

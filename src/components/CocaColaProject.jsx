@@ -105,7 +105,7 @@ export default function CocaColaProject() {
       <div className="relative z-10 w-full pt-[15vh]">
         <section className="min-h-[85vh] flex flex-col items-center justify-start text-center pointer-events-none">
           <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mix-blend-difference mb-4 drop-shadow-2xl">
-            COCA-COLA 3D
+            COCA-COLA
           </h1>
           <p className="text-zinc-300 tracking-[0.4em] font-mono text-xs uppercase animate-pulse drop-shadow-md">
             Comienza a hacer scroll
@@ -169,7 +169,7 @@ export default function CocaColaProject() {
           >
             <div className="border border-white/20 px-6 py-2 rounded-full">
               <span className="text-zinc-400 font-mono text-sm tracking-[0.2em] uppercase">
-                Logo Juegos
+                Edición Juegos Olímpicos 
               </span>
             </div>
             <img
@@ -273,7 +273,7 @@ export default function CocaColaProject() {
           </div>
           <p className="text-zinc-600 font-mono text-[10px] tracking-widest uppercase mt-8 relative z-10 flex items-center gap-4">
             <span className="w-8 h-[1px] bg-zinc-600" />
-            Se mueven en horizontal
+            Coleccionables con acabados únicos
             <span className="w-8 h-[1px] bg-zinc-600" />
           </p>
         </div>
