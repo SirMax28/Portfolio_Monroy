@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import ProjectDetail from "./components/ProjectDetail";
 import CocaColaProject from "./components/CocaColaProject";
+import JuanValdezProject from "./components/JuanValdezProject";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/coca-cola" element={<CocaColaProject />} />
+        <Route path="/juan-valdez" element={<JuanValdezProject />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </AnimatePresence>

@@ -48,7 +48,9 @@ export default function Gallery() {
             const targetUrl =
               project.id === "coca-cola"
                 ? "/coca-cola"
-                : `/project/${project.id}`;
+                : project.id === "juan-valdez"
+                  ? "/juan-valdez"
+                  : `/project/${project.id}`;
 
             return (
               <motion.div
