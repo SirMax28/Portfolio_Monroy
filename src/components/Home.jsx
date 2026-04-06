@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Gallery from "./Gallery";
 import About from "./About";
+import AboutMe from "./AboutMe";
 import Contact from "./Contact";
 
 // Lazy Load del modelo 3D
@@ -179,6 +180,7 @@ export default function Home() {
         </div>
       </section>
 
+      <AboutMe />
       <Gallery />
       <About />
       <Contact />
