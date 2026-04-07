@@ -151,7 +151,7 @@ export default function KinDropProject() {
       </section>
 
       {/* MARQUESINA (TEXTO EN MOVIMIENTO) */}
-      <div className="my-16 py-8 overflow-hidden bg-[#a855f7] flex -rotate-2 scale-110 shadow-2xl origin-center">
+      <div className="my-16 py-8 overflow-hidden bg-[#345a9e] flex -rotate-2 scale-110 shadow-2xl origin-center">
         <motion.div
           className="flex gap-12 whitespace-nowrap items-center shrink-0 pr-12"
           animate={{ x: "-100%" }}
@@ -164,7 +164,7 @@ export default function KinDropProject() {
           {[...Array(15)].map((_, i) => (
             <span
               key={i}
-              className="text-5xl md:text-7xl font-black text-black uppercase italic tracking-tighter hover:text-white transition-colors duration-300 cursor-default"
+              className="text-5xl md:text-7xl font-black text-amber-300 uppercase italic tracking-tighter hover:text-white transition-colors duration-300 cursor-default"
             >
               KINDROP
             </span>
@@ -183,7 +183,7 @@ export default function KinDropProject() {
           {[...Array(15)].map((_, i) => (
             <span
               key={`dup-${i}`}
-              className="text-5xl md:text-7xl font-black text-black uppercase italic tracking-tighter hover:text-white transition-colors duration-300 cursor-default"
+              className="text-5xl md:text-7xl font-black text-amber-300 uppercase italic tracking-tighter hover:text-white transition-colors duration-300 cursor-default"
             >
               KINDROP
             </span>

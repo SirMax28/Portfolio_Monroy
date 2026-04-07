@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function About() {
   const words = "Creando identidad de marca.".split(" ");
+  const [hasHoveredProjects, setHasHoveredProjects] = useState(false);
 
   return (
     <section
@@ -80,46 +81,114 @@ export default function About() {
           </motion.p>
 
           {/* Aesthetic Detail Links */}
-          <div className="flex gap-4">
-            <Link to="/kindrop">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1, delay: 1, type: "spring" }}
-                className="mt-16 w-16 h-16 rounded-full border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500/10 cursor-alias transition-colors"
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
+          <div className="flex flex-wrap gap-4 mt-24 pb-6">
+            {/* FOCUS: Verde */}
+            <div className="relative">
+              {/* Llamada a la acción (Tooltip) visible hasta el primer hover */}
+              {!hasHoveredProjects && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2, duration: 0.5 }}
+                  className="absolute -top-12 left-8 -translate-x-1/2 flex flex-col items-center animate-bounce pointer-events-none z-20"
                 >
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </motion.div>
-            </Link>
+                  <div className="bg-green-500 text-black px-3 py-1 rounded-full text-xs font-black tracking-wide uppercase shadow-[0_0_15px_rgba(34,197,94,0.5)] whitespace-nowrap">
+                    ¡Pasa el cursor!
+                  </div>
+                  <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[6px] border-transparent border-t-green-500 mt-[-1px]"></div>
+                </motion.div>
+              )}
 
-            <Link to="/focus">
+              <Link
+                to="/focus"
+                className="group block"
+                onMouseEnter={() => setHasHoveredProjects(true)}
+                onTouchStart={() => setHasHoveredProjects(true)}
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1, delay: 1, type: "spring" }}
+                  className="relative h-16 w-16 group-hover:w-[175px] group-hover:px-6 rounded-full border border-green-500/30 flex items-center justify-start px-5 text-green-500 bg-green-500/10 hover:bg-green-500 hover:text-black hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] cursor-alias transition-all duration-500 ease-out overflow-hidden"
+                >
+                  {/* Animación "Ping" no interactiva */}
+                  <div className="absolute inset-0 rounded-full border border-green-500/50 animate-ping opacity-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-300"></div>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="group-hover:rotate-90 transition-transform duration-500 flex-shrink-0"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  <span className="opacity-0 group-hover:opacity-100 ml-3 transition-opacity duration-500 delay-100 ease-out whitespace-nowrap font-bold text-sm tracking-widest uppercase">
+                    Ver Focus
+                  </span>
+                </motion.div>
+              </Link>
+            </div>
+
+            {/* KINDROP: Amarillo */}
+            <Link to="/kindrop" className="group">
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 1, delay: 1.2, type: "spring" }}
-                className="mt-16 w-16 h-16 rounded-full border border-blue-500/20 flex items-center justify-center text-blue-500 hover:bg-blue-500/10 cursor-alias transition-colors"
+                className="relative h-16 w-16 group-hover:w-[190px] group-hover:px-6 rounded-full border border-yellow-400/30 flex items-center justify-start px-5 text-yellow-400 bg-yellow-400/10 hover:bg-yellow-400 hover:text-black hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] cursor-alias transition-all duration-500 ease-out overflow-hidden"
               >
+                <div
+                  className="absolute inset-0 rounded-full border border-yellow-400/50 animate-ping opacity-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-300"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
                 <svg
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1"
+                  strokeWidth="2"
+                  className="group-hover:rotate-90 transition-transform duration-500 flex-shrink-0"
                 >
                   <path d="M12 5v14M5 12h14" />
                 </svg>
+                <span className="opacity-0 group-hover:opacity-100 ml-3 transition-opacity duration-500 delay-100 ease-out whitespace-nowrap font-bold text-sm tracking-widest uppercase">
+                  Ver KinDrop
+                </span>
+              </motion.div>
+            </Link>
+
+            {/* HAICAS: Azul claro */}
+            <Link to="/haicas" className="group">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1, delay: 1.4, type: "spring" }}
+                className="relative h-16 w-16 group-hover:w-[180px] group-hover:px-6 rounded-full border border-cyan-400/30 flex items-center justify-start px-5 text-cyan-400 bg-cyan-400/10 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] cursor-alias transition-all duration-500 ease-out overflow-hidden"
+              >
+                <div
+                  className="absolute inset-0 rounded-full border border-cyan-400/50 animate-ping opacity-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-300"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="group-hover:rotate-90 transition-transform duration-500 flex-shrink-0"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                <span className="opacity-0 group-hover:opacity-100 ml-3 transition-opacity duration-500 delay-100 ease-out whitespace-nowrap font-bold text-sm tracking-widest uppercase">
+                  Ver Haicas
+                </span>
               </motion.div>
             </Link>
           </div>

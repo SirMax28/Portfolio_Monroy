@@ -18,6 +18,7 @@ import CustomCursor from "./components/CustomCursor";
 import Preloader from "./components/Preloader";
 import KinDropProject from "./components/KinDropProject";
 import FocusProject from "./components/FocusProject";
+import HaicasProject from "./components/HaicasProject";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function AnimatedRoutes() {
         <Route path="/mas-proyectos" element={<MoreProjects />} />
         <Route path="/kindrop" element={<KinDropProject />} />
         <Route path="/focus" element={<FocusProject />} />
+        <Route path="/haicas" element={<HaicasProject />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </AnimatePresence>
