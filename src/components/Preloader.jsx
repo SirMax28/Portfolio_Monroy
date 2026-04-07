@@ -3,17 +3,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useProgress } from "@react-three/drei";
 
 export default function Preloader() {
-  const { progress, active } = useProgress();
+  const { progress } = useProgress();
   const [complete, setComplete] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(
+    document.readyState === "complete",
+  );
 
   useEffect(() => {
-    // Si el progreso llega a 100 y ya está inactivo (terminó de bajar cosas)
-    if (progress === 100) {
+    // Escucha cuando toda la página (imágenes pesadas, videos, etc.) haya cargado
+    const handleLoad = () => setDomLoaded(true);
+    if (document.readyState === "complete") {
+      setDomLoaded(true);
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Si el progreso 3D llega a 100 Y todo el DOM está listo
+    if (progress >= 100 && domLoaded) {
       // Un pequeño timeout para que el usuario alcance a ver el "100%"
       const timer = setTimeout(() => setComplete(true), 800);
       return () => clearTimeout(timer);
     }
-  }, [progress]);
+  }, [progress, domLoaded]);
+
+  // Si no hay modelos 3D y el dom ya cargó, mostramos 100
+  const displayProgress =
+    domLoaded && progress === 0 ? 100 : Math.round(progress);
 
   // Dots animation for "Cargando..."
   const dotVariants = {
@@ -45,7 +63,7 @@ export default function Preloader() {
                 Preparando la Experiencia
               </span>
               <div className="text-white text-7xl md:text-9xl font-black tabular-nums tracking-tighter mix-blend-difference flex items-baseline">
-                {Math.round(progress)}
+                {displayProgress}
                 <span className="text-3xl md:text-5xl text-red-500">%</span>
               </div>
             </div>
@@ -80,7 +98,7 @@ export default function Preloader() {
               <motion.div
                 className="absolute top-0 left-0 bg-red-500 h-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"
                 initial={{ width: "0%" }}
-                animate={{ width: `${progress}%` }}
+                animate={{ width: `${displayProgress}%` }}
                 transition={{ ease: "linear", duration: 0.1 }}
               />
             </div>
