@@ -174,7 +174,7 @@ export default function JuanValdezProject() {
           </div>
           <div className="md:w-1/2 flex justify-center">
             <img
-              src="/juan_valdez/logo_juan_valdez_principal.webp"
+              src={`${import.meta.env.BASE_URL}juan_valdez/logo_juan_valdez_principal.webp`}
               alt="Logo Juan Valdez"
               className="max-w-[200px] md:max-w-[300px] mix-blend-multiply opacity-90"
               loading="lazy"
@@ -204,7 +204,7 @@ export default function JuanValdezProject() {
               className="absolute inset-0 w-full h-[140%] -top-[20%]"
             >
               <img
-                src="/juan_valdez/banner_horizontal.webp"
+                src={`${import.meta.env.BASE_URL}juan_valdez/banner_horizontal.webp`}
                 alt="Banner Juan Valdez"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -233,7 +233,7 @@ export default function JuanValdezProject() {
             {[...Array(12)].map((_, i) => (
               <img
                 key={i}
-                src="/juan_valdez/logo_juan_valdez_movimiento.webp"
+                src={`${import.meta.env.BASE_URL}juan_valdez/logo_juan_valdez_movimiento.webp`}
                 alt="Juan Valdez"
                 className="h-16 object-contain invert opacity-90 brightness-0"
                 loading="lazy"
@@ -252,7 +252,7 @@ export default function JuanValdezProject() {
             {[...Array(12)].map((_, i) => (
               <img
                 key={i}
-                src="/juan_valdez/logo_juan_valdez_movimiento.webp"
+                src={`${import.meta.env.BASE_URL}juan_valdez/logo_juan_valdez_movimiento.webp`}
                 alt="Juan Valdez"
                 className="h-16 object-contain invert opacity-90 brightness-0"
                 loading="lazy"
@@ -296,7 +296,7 @@ function PackagingSection({ scrollYProgress }) {
             initial={{ opacity: 0, scale: 0.9, rotate: -5, y: 20 }}
             animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
             transition={{ type: "spring", duration: 0.8, bounce: 0.4 }}
-            src="/juan_valdez/vaso_sin_fondo.webp"
+            src={`${import.meta.env.BASE_URL}juan_valdez/vaso_sin_fondo.webp`}
             alt="Packaging Vaso"
             className="max-w-[280px] md:max-w-[400px] relative z-10 drop-shadow-2xl"
             loading="lazy"
@@ -397,12 +397,12 @@ function PackagingSection({ scrollYProgress }) {
 
 function GallerySection() {
   const images = [
-    "/juan_valdez/b.webp",
-    "/juan_valdez/c.webp",
-    "/juan_valdez/d.webp",
-    "/juan_valdez/e.webp",
-    "/juan_valdez/f.webp",
-    "/juan_valdez/a_y_vaso_juan_valdez.webp",
+    `${import.meta.env.BASE_URL}juan_valdez/b.webp`,
+    `${import.meta.env.BASE_URL}juan_valdez/c.webp`,
+    `${import.meta.env.BASE_URL}juan_valdez/d.webp`,
+    `${import.meta.env.BASE_URL}juan_valdez/e.webp`,
+    `${import.meta.env.BASE_URL}juan_valdez/f.webp`,
+    `${import.meta.env.BASE_URL}juan_valdez/a_y_vaso_juan_valdez.webp`,
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);

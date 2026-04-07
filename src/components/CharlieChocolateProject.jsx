@@ -19,18 +19,18 @@ export default function CharlieChocolateProject() {
 
   // Gallery Array excluding the Hero explicitly (Wait, if Foto 01 is hero, we exclude it here)
   const images = [
-    "/chocolate/foto_01.webp",
-    "/chocolate/foto_02.webp",
-    "/chocolate/foto_03.webp",
+    `${import.meta.env.BASE_URL}chocolate/foto_01.webp`,
+    `${import.meta.env.BASE_URL}chocolate/foto_02.webp`,
+    `${import.meta.env.BASE_URL}chocolate/foto_03.webp`,
   ];
 
-  const palette = "/chocolate/paleta_de_colores.webp";
+  const palette = `${import.meta.env.BASE_URL}chocolate/paleta_de_colores.webp`;
 
   const lowerImages = [
-    "/chocolate/foto_04_stickers.webp",
-    "/chocolate/foto_05.webp",
-    "/chocolate/foto_06.webp",
-    "/chocolate/foto_07.webp",
+    `${import.meta.env.BASE_URL}chocolate/foto_04_stickers.webp`,
+    `${import.meta.env.BASE_URL}chocolate/foto_05.webp`,
+    `${import.meta.env.BASE_URL}chocolate/foto_06.webp`,
+    `${import.meta.env.BASE_URL}chocolate/foto_07.webp`,
   ];
 
   // States
@@ -39,9 +39,9 @@ export default function CharlieChocolateProject() {
   const [activePhone, setActivePhone] = useState(1);
 
   const phoneVideos = [
-    "/chocolate/segundo_video_chocolate.webm",
-    "/chocolate/primer_video_chocolate.webm",
-    "/chocolate/tercer_video_chocolate.webm", // El tercer video que sigues editando (Vacío temporalmente)
+    `${import.meta.env.BASE_URL}chocolate/segundo_video_chocolate.webm`,
+    `${import.meta.env.BASE_URL}chocolate/primer_video_chocolate.webm`,
+    `${import.meta.env.BASE_URL}chocolate/tercer_video_chocolate.webm`, // El tercer video que sigues editando (Vacío temporalmente)
   ];
 
   const phones = [0, 1, 2];
@@ -112,7 +112,7 @@ export default function CharlieChocolateProject() {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0604] via-transparent to-black/40 z-10" />
           <img
-            src="/chocolate/foto_horizontal.webp"
+            src={`${import.meta.env.BASE_URL}chocolate/foto_horizontal.webp`}
             alt="Chocolate Factory Hero"
             className="w-full h-full object-cover scale-105"
           />
@@ -329,7 +329,7 @@ export default function CharlieChocolateProject() {
                     </div>
                     {/* Transparent Phone Mockup Overlay */}
                     <img
-                      src="/chocolate/telefono_fondo_transparente.webp"
+                      src={`${import.meta.env.BASE_URL}chocolate/telefono_fondo_transparente.webp`}
                       alt="Phone Mockup"
                       className="relative z-20 w-full h-full object-contain pointer-events-none drop-shadow-lg"
                     />

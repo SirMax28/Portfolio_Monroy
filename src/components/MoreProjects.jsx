@@ -168,7 +168,7 @@ export default function MoreProjects() {
                 viewport={{ once: true }}
               >
                 <img
-                  src="/portfolio_extras/comic/pag_2.webp"
+                  src={`${import.meta.env.BASE_URL}portfolio_extras/comic/pag_2.webp`}
                   alt="Página de Comic 2"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -198,7 +198,7 @@ export default function MoreProjects() {
                 <div className="absolute inset-0 w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-transparent">
                   <div className="absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
                     <img
-                      src="/portfolio_extras/comic/pag_1.webp"
+                      src={`${import.meta.env.BASE_URL}portfolio_extras/comic/pag_1.webp`}
                       alt="Página de Comic 1"
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -263,11 +263,11 @@ export default function MoreProjects() {
                 transition={{ delay: i * 0.1 }}
                 className="relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-square cursor-zoom-in"
                 onClick={() =>
-                  setSelectedImage(`/portfolio_extras/hiperrealista/${img}`)
+                  setSelectedImage(`${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`)
                 }
               >
                 <img
-                  src={`/portfolio_extras/hiperrealista/${img}`}
+                  src={`${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`}
                   alt={img.replace(".webp", "").replace(/_/g, " ")}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"

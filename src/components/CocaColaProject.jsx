@@ -173,7 +173,7 @@ export default function CocaColaProject() {
               </span>
             </div>
             <img
-              src="/coca_cola/logo_juegos_olimpicos.webp"
+              src={`${import.meta.env.BASE_URL}coca_cola/logo_juegos_olimpicos.webp`}
               alt="Juegos Olímpicos"
               className="w-32 md:w-48 object-contain mix-blend-screen opacity-90"
               loading="lazy"
@@ -188,7 +188,7 @@ export default function CocaColaProject() {
             className="flex flex-col items-center gap-6 mt-8"
           >
             <img
-              src="/coca_cola/logo_coca_cola.webp"
+              src={`${import.meta.env.BASE_URL}coca_cola/logo_coca_cola.webp`}
               alt="Coca Cola"
               className="w-56 md:w-80 object-contain drop-shadow-[0_0_15px_rgba(224,0,36,0.5)]"
               loading="lazy"
@@ -241,7 +241,7 @@ export default function CocaColaProject() {
               ].map((can, i) => (
                 <img
                   key={`marquee1-${i}`}
-                  src={`/coca_cola/${can}`}
+                  src={`${import.meta.env.BASE_URL}coca_cola/${can}`}
                   alt={can.replace(".webp", "").replace(/_/g, " ")}
                   className="w-24 md:w-48 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer will-change-transform"
                   loading="lazy"
@@ -263,7 +263,7 @@ export default function CocaColaProject() {
               ].map((can, i) => (
                 <img
                   key={`marquee2-${i}`}
-                  src={`/coca_cola/${can}`}
+                  src={`${import.meta.env.BASE_URL}coca_cola/${can}`}
                   alt={can.replace(".webp", "").replace(/_/g, " ")}
                   className="w-24 md:w-48 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer will-change-transform"
                   loading="lazy"
@@ -307,10 +307,10 @@ export default function CocaColaProject() {
 
 function GallerySection() {
   const images = [
-    "/coca_cola/galery_a.webp",
-    "/coca_cola/galery_b.webp",
-    "/coca_cola/galer_c.webp",
-    "/coca_cola/galery_d.webp",
+    `${import.meta.env.BASE_URL}coca_cola/galery_a.webp`,
+    `${import.meta.env.BASE_URL}coca_cola/galery_b.webp`,
+    `${import.meta.env.BASE_URL}coca_cola/galer_c.webp`,
+    `${import.meta.env.BASE_URL}coca_cola/galery_d.webp`,
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);

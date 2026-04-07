@@ -8,7 +8,7 @@ export const projectsData = [
       "Exploración visual y rediseño conceptual de latas usando renderizado 3D para destacar la iconicidad de la marca.",
     themeColor: "#e00024", // Rojo Coca-Cola
     renderType: "3d-model",
-    image: "/coca_cola/galery_b.webp",
+    image: `${import.meta.env.BASE_URL}coca_cola/galery_b.webp`,
   },
   {
     id: "juan-valdez",
@@ -19,7 +19,7 @@ export const projectsData = [
       "Diseño de empaque enfocado en la experiencia sensorial, combinando texturas de papel craft y granos tostados.",
     themeColor: "#6B4C3A", // Café oscuro
     renderType: "parallax",
-    image: "/juan_valdez/banner_horizontal.webp",
+    image: `${import.meta.env.BASE_URL}juan_valdez/banner_horizontal.webp`,
   },
   {
     id: "charlie-chocolate",
@@ -30,7 +30,7 @@ export const projectsData = [
       "Maquetación editorial y diseño de packaging inspirado en el clásico ticket dorado, con acabados metálicos y elegancia oscura.",
     themeColor: "#D4AF37", // Dorado
     renderType: "foil-effect",
-    image: "/chocolate/foto_horizontal.webp",
+    image: `${import.meta.env.BASE_URL}chocolate/foto_horizontal.webp`,
   },
   {
     id: "mas-proyectos",

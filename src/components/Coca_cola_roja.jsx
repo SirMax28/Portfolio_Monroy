@@ -7,7 +7,7 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/coca_cola_roja.glb')
+  const { nodes, materials } = useGLTF(`${import.meta.env.BASE_URL}coca_cola_roja.glb`)
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Cylinder_1.geometry} material={materials.Material} />
@@ -16,4 +16,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/coca_cola_roja.glb')
+useGLTF.preload(`${import.meta.env.BASE_URL}coca_cola_roja.glb`)

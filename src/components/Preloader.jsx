@@ -21,8 +21,10 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
-    // Si el progreso 3D llega a 100 Y todo el DOM está listo
-    if (progress >= 100 && domLoaded) {
+    // Si el progreso 3D llega a 100 O no hay nada que cargar 3D (progress === 0 y domLoaded)
+    const isFullyLoaded = (progress >= 100 || (progress === 0 && domLoaded)) && domLoaded;
+    
+    if (isFullyLoaded) {
       // Un pequeño timeout para que el usuario alcance a ver el "100%"
       const timer = setTimeout(() => setComplete(true), 800);
       return () => clearTimeout(timer);
