@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function About() {
   const words = "Creando identidad de marca.".split(" ");
@@ -78,25 +79,50 @@ export default function About() {
             marca empieza a adquirir personalidad y reconocimiento.
           </motion.p>
 
-          {/* Aesthetic Detail */}
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1, delay: 1, type: "spring" }}
-            className="mt-16 w-16 h-16 rounded-full border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500/10 cursor-alias transition-colors"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </motion.div>
+          {/* Aesthetic Detail Links */}
+          <div className="flex gap-4">
+            <Link to="/kindrop">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1, delay: 1, type: "spring" }}
+                className="mt-16 w-16 h-16 rounded-full border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500/10 cursor-alias transition-colors"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </motion.div>
+            </Link>
+
+            <Link to="/focus">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1, delay: 1.2, type: "spring" }}
+                className="mt-16 w-16 h-16 rounded-full border border-blue-500/20 flex items-center justify-center text-blue-500 hover:bg-blue-500/10 cursor-alias transition-colors"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </motion.div>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
