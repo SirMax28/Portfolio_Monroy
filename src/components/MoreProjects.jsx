@@ -14,6 +14,107 @@ import {
 } from "@react-three/drei";
 import { Link } from "react-router-dom";
 
+const floralImages = [
+  "flores_perdidas_principal.webp",
+  "flores_perdidas_1.webp",
+  "flores_perdidas_2.webp",
+];
+
+function FloralGallery({ onSelectImage }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % floralImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div
+      className="relative w-full h-[400px] md:h-[500px] rounded-3xl border border-white/10 bg-[#0a0014] overflow-hidden group shadow-[0_20px_50px_rgba(139,92,246,0.15)] cursor-zoom-in"
+      onClick={() =>
+        onSelectImage({
+          all: floralImages.map(
+            (i) =>
+              `${import.meta.env.BASE_URL}portfolio_extras/flores_perdidas/${i}`,
+          ),
+          currentIndex: index,
+          current: `${import.meta.env.BASE_URL}portfolio_extras/flores_perdidas/${floralImages[index]}`,
+        })
+      }
+    >
+      <AnimatePresence>
+        <motion.img
+          key={index}
+          src={`${import.meta.env.BASE_URL}portfolio_extras/flores_perdidas/${floralImages[index]}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ opacity: 0, scale: 1.15, filter: "blur(20px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
+          transition={{ duration: 2, ease: [0.25, 1, 0.5, 1] }}
+          loading="lazy"
+        />
+      </AnimatePresence>
+
+      {/* Atmospheric Overlays */}
+      <div className="absolute inset-0 mix-blend-screen opacity-20 group-hover:opacity-50 transition-opacity duration-1000 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.6),transparent_80%)] pointer-events-none" />
+
+      {/* Floating Spores/Pollen */}
+      <motion.div
+        animate={{
+          y: [0, -40, 0],
+          x: [0, 20, 0],
+          opacity: [0, 0.8, 0],
+          scale: [0.5, 1.5, 0.5],
+        }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full bg-purple-300 blur-[2px] pointer-events-none"
+      />
+      <motion.div
+        animate={{
+          y: [0, 50, 0],
+          x: [0, -30, 0],
+          opacity: [0, 0.6, 0],
+          scale: [0.5, 1.2, 0.5],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 8,
+          delay: 2,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-1/3 right-1/4 w-5 h-5 rounded-full bg-[#8b5cf6] blur-[4px] pointer-events-none"
+      />
+      <motion.div
+        animate={{
+          y: [0, -30, 0],
+          x: [0, -15, 0],
+          opacity: [0, 0.5, 0],
+          scale: [0.8, 1.8, 0.8],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 7,
+          delay: 1,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full bg-white blur-[1px] pointer-events-none"
+      />
+
+      <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none flex justify-between items-end translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[0.16,1,0.3,1]">
+        <span className="text-white/70 font-mono text-xs tracking-[0.3em] uppercase drop-shadow-md">
+          Muestra {index + 1} <span className="text-[#8b5cf6] mx-1">/</span>{" "}
+          {floralImages.length}
+        </span>
+        <span className="text-[#8b5cf6] font-mono text-[10px] tracking-widest uppercase border border-[#8b5cf6]/40 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+          AMPLIAR
+        </span>
+      </div>
+    </div>
+  );
+}
+
 // Abstract 3D shape instead of Coca Cola Can
 function AbstractShape({ scrollYProgress }) {
   const group = useRef();
@@ -236,7 +337,7 @@ export default function MoreProjects() {
         <div className="px-6 md:px-16 lg:px-24 mx-auto max-w-7xl mb-32">
           <div className="mb-12 border border-white/10 inline-block px-6 py-2 rounded-full bg-white/5">
             <h3 className="text-sm font-mono tracking-[0.2em] uppercase text-zinc-300">
-              <span className="text-[#8b5cf6]">02.</span> Hiperrealismo Extremo
+              <span className="text-[#8b5cf6]">02.</span> Hiperrealismo
             </h3>
           </div>
 
@@ -249,66 +350,78 @@ export default function MoreProjects() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              "caballo_hiperrealista.webp",
-              "gato_hiperrealista.webp",
-              "gato_naranja_hiperrealista.webp",
-              "pato_hiperrealista.webp",
-            ].map((img, i) => (
-              <motion.div
-                key={img}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-square cursor-zoom-in"
-                onClick={() =>
-                  setSelectedImage(
-                    `${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`,
-                  )
-                }
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`}
-                  alt={img.replace(".webp", "").replace(/_/g, " ")}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#8b5cf6]">
-                    {img.split("_")[0]}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            {(() => {
+              const hyperImages = [
+                "caballo_hiperrealista.webp",
+                "gato_hiperrealista.webp",
+                "gato_naranja_hiperrealista.webp",
+                "pato_hiperrealista.webp",
+              ];
+              const fullUrls = hyperImages.map(
+                (img) =>
+                  `${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`,
+              );
+
+              return hyperImages.map((img, i) => (
+                <motion.div
+                  key={img}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-square cursor-zoom-in"
+                  onClick={() =>
+                    setSelectedImage({
+                      all: fullUrls,
+                      currentIndex: i,
+                      current: fullUrls[i],
+                    })
+                  }
+                >
+                  <img
+                    src={fullUrls[i]}
+                    alt={img.replace(".webp", "").replace(/_/g, " ")}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <span className="text-xs font-mono uppercase tracking-widest text-[#8b5cf6]">
+                      {img.split("_")[0]}
+                    </span>
+                  </div>
+                </motion.div>
+              ));
+            })()}
           </div>
         </div>
 
-        {/* EXTRA SECTION 1: PROTOTIPADOS ABTRACTOS */}
+        {/* EXTRA SECTION 1: PROTOTIPADOS ABTRACTOS (Now Botanica) */}
         <div className="px-6 md:px-16 lg:px-24 mx-auto max-w-7xl mb-32 border-t border-white/10 pt-32 relative">
           <div className="absolute top-0 right-1/4 w-[1px] h-32 bg-gradient-to-b from-[#8b5cf6] to-transparent" />
           <div className="mb-12 border border-white/10 inline-block px-6 py-2 rounded-full bg-white/5">
             <h3 className="text-sm font-mono tracking-[0.2em] uppercase text-zinc-300">
-              <span className="text-[#8b5cf6]">03.</span> Prototipos Visuales
+              <span className="text-[#8b5cf6]">03.</span> Homenaje a la botánica
             </h3>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-12 justify-between">
-            <div className="flex-1">
-              <h4 className="text-3xl md:text-5xl font-bold mb-6">
-                El Proceso Creativo.
+          <div className="flex flex-col lg:flex-row gap-12 justify-between items-center">
+            <div className="flex-1 w-full lg:max-w-xl">
+              <h4 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+                Las Flores
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] to-white">
+                  Perdidas.
+                </span>
               </h4>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                Antes de llegar al resultado final, hay decenas de bocetos,
-                moodboards y exploraciones de color. El error y la iteración son
-                las bases fundamentales de un diseño robusto.
+              <p className="text-zinc-400 text-lg leading-relaxed mb-6 font-light">
+                El renacer de la floriografía victoriana, un proyecto editorial
+                e ilustrativo que traduce el lenguaje secreto de la botánica en
+                piezas táctiles, combinando el rigor del trazo a tinta con la
+                sorpresa de la ingeniería de papel.
               </p>
             </div>
-            <div className="flex-1 min-h-[300px] border border-white/10 rounded-2xl bg-white/5 relative overflow-hidden flex items-center justify-center p-8 text-center group">
-              <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none group-hover:opacity-40 transition-opacity" />
-              <p className="text-[#8b5cf6] text-xl font-light uppercase tracking-[0.3em] font-mono mix-blend-screen drop-shadow-md">
-                WORK IN PROGRESS
-              </p>
+            <div className="flex-1 w-full relative">
+              <FloralGallery onSelectImage={setSelectedImage} />
             </div>
           </div>
         </div>
@@ -327,8 +440,8 @@ export default function MoreProjects() {
               ABCXYZ
             </h4>
             <p className="text-zinc-500 font-mono text-sm tracking-widest max-w-lg mt-8 border-t border-white/10 pt-8">
-              Búsqueda de la legibilidad en entornos no convencionales. Formatos
-              fluidos y geometría pura.
+              He creado multiples variantes de tipografía, que se ajustan a
+              diferentes contextos, todo pensado con extremo detalle.
             </p>
           </div>
         </div>
@@ -345,18 +458,32 @@ export default function MoreProjects() {
             onClick={() => setSelectedImage(null)}
           >
             <motion.img
+              key={selectedImage.current}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              src={selectedImage}
-              className="max-w-full max-h-full object-contain rounded-lg border border-white/10 shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Evita que se cierre si clickean en la imagen misma accidentalmente, pero si quieres puede cerrarlo tambien
+              src={selectedImage.current}
+              className="max-w-full max-h-full object-contain rounded-lg border border-white/10 shadow-2xl cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (selectedImage.all && selectedImage.all.length > 1) {
+                  const nextIndex =
+                    (selectedImage.currentIndex + 1) % selectedImage.all.length;
+                  setSelectedImage({
+                    all: selectedImage.all,
+                    currentIndex: nextIndex,
+                    current: selectedImage.all[nextIndex],
+                  });
+                }
+              }}
             />
-            <p className="absolute bottom-8 text-white/50 text-xs font-mono tracking-widest uppercase text-center flex items-center gap-3">
-              <span className="w-8 h-[1px] bg-white/20" />
-              Click en el fondo para cerrar
-              <span className="w-8 h-[1px] bg-white/20" />
+            <p className="absolute bottom-8 text-white/50 text-[10px] md:text-xs font-mono tracking-widest uppercase text-center flex flex-col md:flex-row items-center gap-3">
+              <span className="hidden md:block w-8 h-[1px] bg-white/20" />
+              {selectedImage.all && selectedImage.all.length > 1
+                ? "Click en imagen para la siguiente • Click al fondo para cerrar"
+                : "Click en el fondo para cerrar"}
+              <span className="hidden md:block w-8 h-[1px] bg-white/20" />
             </p>
           </motion.div>
         )}
