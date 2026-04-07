@@ -88,7 +88,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={(e) => handleNavClick(e, "inicio")}
-          className="text-white font-black tracking-tighter text-xl cursor-pointer relative z-[70]"
+          className="text-white font-black tracking-tighter text-xl cursor-pointer relative z-[70] py-2 pr-4 -my-2"
         >
           MONROY<span className="text-red-500">.</span>
         </motion.div>
@@ -104,7 +104,7 @@ export default function Navbar() {
                   href={`/#${link.href}`}
                   onClick={(e) => handleNavClick(e, link.href)}
                   whileHover={{ y: -2, color: "#fff" }}
-                  className={`text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group cursor-pointer ${
+                  className={`text-xs font-mono tracking-[0.2em] uppercase transition-colors duration-300 relative group cursor-pointer after:content-[''] after:absolute after:-inset-4 ${
                     isActive
                       ? "text-white"
                       : "text-zinc-500 hover:text-zinc-300"
@@ -125,7 +125,7 @@ export default function Navbar() {
         {/* Mobile Menu indicator (Minimal) */}
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col gap-1.5 cursor-pointer group relative z-[70] p-2"
+          className="md:hidden flex flex-col gap-1.5 cursor-pointer group relative z-[70] p-4 -m-2"
         >
           <motion.div
             animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 6 : 0 }}
@@ -175,7 +175,7 @@ export default function Navbar() {
                   <a
                     href={`/#${link.href}`}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-4xl font-black tracking-tighter text-white hover:text-red-500 transition-colors uppercase"
+                    className="block py-4 px-12 -my-4 -mx-12 text-4xl font-black tracking-tighter text-white hover:text-red-500 transition-colors uppercase text-center"
                   >
                     {link.name}
                   </a>

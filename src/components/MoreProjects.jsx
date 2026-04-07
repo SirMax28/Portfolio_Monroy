@@ -263,7 +263,9 @@ export default function MoreProjects() {
                 transition={{ delay: i * 0.1 }}
                 className="relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-square cursor-zoom-in"
                 onClick={() =>
-                  setSelectedImage(`${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`)
+                  setSelectedImage(
+                    `${import.meta.env.BASE_URL}portfolio_extras/hiperrealista/${img}`,
+                  )
                 }
               >
                 <img

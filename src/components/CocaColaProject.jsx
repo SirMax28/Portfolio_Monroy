@@ -169,7 +169,7 @@ export default function CocaColaProject() {
           >
             <div className="border border-white/20 px-6 py-2 rounded-full">
               <span className="text-zinc-400 font-mono text-sm tracking-[0.2em] uppercase">
-                Edición Juegos Olímpicos 
+                Edición Juegos Olímpicos
               </span>
             </div>
             <img
