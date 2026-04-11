@@ -275,6 +275,7 @@ export default function JuanValdezProject() {
 
 function PackagingSection({ scrollYProgress }) {
   const [selectedColor, setSelectedColor] = useState("#fbf9f6"); // Color por defecto de la sección
+  const [hasInteracted, setHasInteracted] = useState(false);
   const options = [
     { color: "#5c7835", name: "Verde Olivo" },
     { color: "#512216", name: "Marrón Oscuro" },
@@ -316,17 +317,31 @@ function PackagingSection({ scrollYProgress }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 w-full">
-            {options.map((opt) => {
+          <div
+            className="flex flex-col gap-4 w-full"
+            onMouseEnter={() => setHasInteracted(true)}
+            onTouchStart={() => setHasInteracted(true)}
+          >
+            {options.map((opt, index) => {
               const isDarkState =
                 selectedColor === "#9a2e25" || selectedColor === "#512216";
               const isSelected = selectedColor === opt.color;
+              const showHint = !hasInteracted && index === 0;
 
               return (
-                <div
+                <motion.div
                   key={opt.color}
-                  onClick={() => setSelectedColor(opt.color)}
-                  className={`flex items-center justify-between w-full p-4 rounded-2xl cursor-pointer group transition-all duration-300 border-2 ${
+                  onClick={() => {
+                    setSelectedColor(opt.color);
+                    setHasInteracted(true);
+                  }}
+                  animate={showHint ? { scale: [1, 1.02, 1] } : { scale: 1 }}
+                  transition={
+                    showHint
+                      ? { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                      : {}
+                  }
+                  className={`relative flex items-center justify-between w-full p-4 rounded-2xl cursor-pointer group transition-all duration-300 border-2 ${
                     isSelected
                       ? isDarkState
                         ? "border-white/30 bg-white/10"
@@ -334,7 +349,7 @@ function PackagingSection({ scrollYProgress }) {
                       : isDarkState
                         ? "border-white/5 hover:border-white/20 hover:bg-white/5"
                         : "border-black/5 hover:border-black/20 hover:bg-black/5"
-                  }`}
+                  } ${showHint ? "!border-[#b38b59] shadow-[0_0_20px_rgba(179,139,89,0.3)] bg-[#b38b59]/5" : ""}`}
                 >
                   <div className="flex items-center gap-6">
                     <motion.div
@@ -372,20 +387,35 @@ function PackagingSection({ scrollYProgress }) {
                   </div>
 
                   {/* Clearer click indicator */}
-                  <div
-                    className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all ${
-                      isSelected
-                        ? isDarkState
-                          ? "bg-white text-black"
-                          : "bg-[#b38b59] text-white"
-                        : isDarkState
-                          ? "bg-white/10 text-white/50 group-hover:bg-white/20 group-hover:text-white/90"
-                          : "bg-black/5 text-black/40 group-hover:bg-black/10 group-hover:text-black/80"
-                    }`}
-                  >
-                    {isSelected ? "Activo" : "Elegir"}
+                  <div className="flex items-center gap-3">
+                    {showHint && (
+                      <motion.span
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 1.5,
+                          ease: "easeInOut",
+                        }}
+                        className="text-xs font-bold text-[#b38b59] uppercase tracking-widest hidden md:block"
+                      >
+                        ¡Clickea aquí!
+                      </motion.span>
+                    )}
+                    <div
+                      className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all ${
+                        isSelected
+                          ? isDarkState
+                            ? "bg-white text-black"
+                            : "bg-[#b38b59] text-white"
+                          : isDarkState
+                            ? "bg-white/10 text-white/50 group-hover:bg-white/20 group-hover:text-white/90"
+                            : "bg-black/5 text-black/40 group-hover:bg-black/10 group-hover:text-black/80"
+                      }`}
+                    >
+                      {isSelected ? "Activo" : "Elegir"}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
