@@ -13,11 +13,15 @@ import { Link } from "react-router-dom";
 function AnimatedBag({ scrollYProgress }) {
   const group = useRef();
 
-  // Rotación orgánica
+  // Rotación coreografiada:
+  // El frente exacto del modelo está en Math.PI * 1.5
+  // [0 a 0.4] -> Inicia de frente y gira súper lento mostrando un poco el perfil (1.5 a 1.7)
+  // [0.4 a 0.8] -> Da la vuelta para mostrar la espalda (2.5)
+  // [0.8 a 1.0] -> Da la vuelta completa para terminar de frente nuevamente (3.5)
   const rotateY = useTransform(
     scrollYProgress,
-    [0, 1],
-    [Math.PI * 0.2, Math.PI * 4.2],
+    [0, 0.4, 0.8, 1],
+    [Math.PI * 1.5, Math.PI * 1.7, Math.PI * 2.5, Math.PI * 3.5],
   );
   const rotateX = useTransform(scrollYProgress, [0, 0.8, 1], [0.1, 0, -0.4]);
   const rotateZ = useTransform(scrollYProgress, [0, 0.8, 1], [-0.1, 0, 0.2]);
