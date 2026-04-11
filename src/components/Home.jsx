@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Gallery from "./Gallery";
 import About from "./About";
 import AboutMe from "./AboutMe";
+import SocialLinks from "./SocialLinks";
 import Contact from "./Contact";
 
 // Lazy Load del modelo 3D
@@ -239,6 +240,7 @@ export default function Home() {
       <AboutMe />
       <Gallery />
       <About />
+      <SocialLinks />
       <Contact />
     </motion.div>
   );
