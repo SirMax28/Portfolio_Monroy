@@ -6,8 +6,7 @@ const links = [
     name: "INSTAGRAM",
     url: "https://www.instagram.com/mar.monroy__/",
     handle: "@mar.monroy__",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop", // Abstract red/dark
+    image: `${import.meta.env.BASE_URL}portfolio_extras/social/instragram_background.webp`,
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -28,8 +27,7 @@ const links = [
     name: "TIKTOK",
     url: "https://www.tiktok.com/@e.art.gogh",
     handle: "@e.art.gogh",
-    image:
-      "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?q=80&w=2000&auto=format&fit=crop", // More noticeable lighting
+    image: `${import.meta.env.BASE_URL}portfolio_extras/social/tiktok_background.webp`,
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -44,8 +42,7 @@ const links = [
     name: "ETSY SHOP",
     url: "https://www.etsy.com/es/shop/eartgogh",
     handle: "eartgogh",
-    image:
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000&auto=format&fit=crop", // Abstract art
+    image: `${import.meta.env.BASE_URL}portfolio_extras/social/shop_background.webp`,
     icon: (
       <svg
         viewBox="0 0 24 24"
