@@ -19,6 +19,7 @@ import Preloader from "./components/Preloader";
 import KinDropProject from "./components/KinDropProject";
 import FocusProject from "./components/FocusProject";
 import HaicasProject from "./components/HaicasProject";
+import Footer from "./components/Footer";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -75,6 +76,7 @@ export default function App() {
         <CustomCursor />
         <Navbar />
         <AnimatedRoutes />
+        <Footer />
       </div>
     </Router>
   );
